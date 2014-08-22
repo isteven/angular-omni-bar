@@ -1,0 +1,113 @@
+body {
+    font-family: 'Arial';
+    font-size: 14px;
+    background-color: #fff;            
+    line-height:1.4;            
+}
+#container {
+    margin: 0px auto; 
+    padding: 15px 50px;
+}
+pre {
+    word-wrap: break-word;   
+    margin: 0px;
+    margin-bottom: 14px;
+}
+
+code {            
+    background-color: #f6f6f6;
+    display: inline-block;
+    border: 1px solid #ccc !important;
+    padding: 0 2px 0 2px !important; 
+}
+
+pre code {
+    padding: 10px !important; 
+}
+
+h1 {
+    font-size: 3em;
+    padding: 0;
+    margin: 0;
+}
+h2 {
+    display: inline-block;
+    margin-top:35px;
+    margin-bottom: 15px;
+    width:100%;
+    height:28px;
+    border-bottom:1px solid #ccc;
+}
+h3 {
+    display: inline-block;
+    width: 100%;
+    margin-top: 25px;
+}
+.attrs  {
+    margin-bottom:10px;
+}
+.col {
+    display: inline-block;
+    float: left;
+    margin-right:15px;
+}
+.inlinefauxcode {           
+    font-family: monospace !important;
+    padding: 1px;
+    position:relative;
+    top:-2px;
+    border: 1px solid #ccc;
+    background-color: #F8F8F8;
+}
+.fauxcode {
+    border: 1px solid #ccc;
+    background-color: #F8F8F8;
+    padding: 10px !important;
+}
+div.fauxcode, .fauxcode td {
+    font-family: monospace !important;
+    padding-right:10px;
+    vertical-align: top;
+    white-space: nowrap;
+}
+.download {
+    border-radius:5px;
+    border:1px solid #ccc;
+    display:table-cell;
+    color:#333;
+    font-weight:bold;
+    font-size:17px;
+    height:30px;
+    line-height:25px;
+    text-decoration:none;
+    text-align:center;
+    vertical-align:middle;
+    position: relative;
+    -moz-border-colors: none;
+    background-color: #E6E6E6;
+    background-image: linear-gradient(#FAFAFA, #EAEAEA);
+    background-repeat: no-repeat;
+    border-color: #D4D4D4 #D4D4D4 #BCBCBC;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px;
+
+    padding:10px;
+}
+.download:hover {
+    background-color: #e6e6e6;
+    background-image: linear-gradient(#599bdc, #307bd3);   
+    border-width: 1px;
+    border-color: #518cc6 #518cc6 #2a65a0;
+    color: #fff;
+    text-shadow: 1px 1px 0px #333;
+    -webkit-filter: grayscale(0%);
+}
+.download img {            
+    height: 25px;
+    float: left;
+    padding-right:10px;
+}       
+.grey {
+    color: #999;
+}
