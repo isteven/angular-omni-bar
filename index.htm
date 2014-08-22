@@ -55,101 +55,13 @@
         <iframe src="http://ghbtns.com/github-btn.html?user=isteven&repo=angular-multi-select&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="80" height="20"></iframe>
         <iframe src="http://ghbtns.com/github-btn.html?user=isteven&repo=angular-multi-select&type=follow&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="160" height="20"></iframe>
         -->
-<h2>Features</h2>
+        <h2>Features</h2>
         <ul>
             <li>Pure AngularJS. Can be easily combined with other Javascript libraries such as jQuery, Twitter Bootstrap, etc.</li>            
-            <li>Multiple or single selection types</li>
         </ul> 
 
         
-<h2>Usage</h2>
-Include the required files
-<pre><code>&lt;link rel="stylesheet" href="angular-multi-select.css"&gt;
-...
-&lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"&gt;&lt;/script&gt;
-&lt;script src="angular-multi-select.js"&gt;&lt;/script&gt;      
-...
-</code></pre>
-
-Load the multi-select directive into your AngularJS app, such as:
-<br />
-<pre><code>var myApp = angular.module('myApp', [ 'multi-select' ]);</code></pre>
-
-
-<div class="col">
-In your view, set the directive as an attribute<br />
-<pre><code>&lt;div     
-    multi-select
-    input-model="modernWebBrowsers"
-    button-label="icon name"
-    item-label="icon name maker"
-    tick-property="ticked"
-&gt;
-&lt;/div&gt;
-</code></pre>
-</div>
-<div class="col">
-... or as an element, but be careful with browser compatibility.<br />
-<pre><code>&lt;multi-select    
-    input-model="modernWebBrowsers"    
-    button-label="icon name"
-    item-label="icon name maker"
-    tick-property="ticked"
-&gt;
-&lt;/multi-select&gt;
-</code></pre>
-</div>
-<div style="clear:both">   
-And that's it! You should now have dropdown button like the one you saw earlier on top of the page.
-<br /><br />
-</div>
-
-<h2>Attributes / Options</h2>
-        
-<div class="col">
-    Full spec
-<pre><code>&lt;div 
-    multi-select 
-    input-model="$scope.arrOfObjects"
-    output-model="$scope.arrOfObjects2"
-    button-label="property1 property2 ..."         
-    item-label="property1 property2 ..." 
-    tick-property="property3" 
-    disable-property="property4"
-    orientation="horizontal | vertical"
-    selection-mode="multiple | single"
-    max-labels="999"     
-    directive-id="..."
-    is-disabled="true | false"
-    helper-elements="all none reset filter"
-    default-label="..."
-    on-open="$scope.functionOpen( data )"
-    on-close="$scope.functionClose( data )"
-    on-item-click="$scope.functionClick( data )"
-&gt;
-&lt;/div&gt;
-</code></pre>
-</div>
-<div class="col">
-.. or ..
-<pre><code>&lt;multi-select 
-    ...
-&gt;
-&lt;/multi-select&gt;
-</code></pre>
-</div>
-<div style="clear:both">&nbsp;</div>
-        Below are the available attributes to configure the multi-select directive:
-        <ul>
-            <li class="attrs">
-                <strong>button-label (REQUIRED)</strong>
-                <br />input-model property that you want to display on the button. Separate multiple values by space. 
-                <br />Example: 
-                <code>button-label="firstName"</code>
-            </li>
-
-
-        </ul>
+        <h2>Usage</h2>
 
         <h2>Demo</h2>
 
@@ -177,7 +89,6 @@ And that's it! You should now have dropdown button like the one you saw earlier 
         <h2>Note</h2>
         <ul>            
             <li>This directive is a practical solution, not a performance champion. It will not win any code efficiency competition.</li>
-            <li>Pardon some incorrect HTML highlighting in this document. Apparently highlight.js breaks when it sees on-open="function()" etc.</li>
             <li>As for the moment, developments are on going, so I am not accepting pull requests. I will choose &  add them manually instead.</li>
             <li>If you like / use this directive in your awesome projects, star this repo. It's a huge motivation for me. Would also love to hear from you if you use it in an open source project. Thanks!</li>                    
         </ul>        
