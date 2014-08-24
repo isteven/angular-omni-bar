@@ -48,16 +48,11 @@ angular.module( 'isteven-omni-bar', ['ng'] ).directive( 'istevenOmniBar' , [ '$t
             // bars
             currentValue    : '=',
             currentStyle    : '=',     
-
             maxValue        : '=',            
             maxStyle        : '=',
 
             // bar container
             containerStyle  : '=',
-
-            // text
-            infoStyle       : '=',
-            infoFormat      : '=',
 
             // callbacks
             onClick         : '&'
@@ -68,7 +63,7 @@ angular.module( 'isteven-omni-bar', ['ng'] ).directive( 'istevenOmniBar' , [ '$t
                     '<div class="maxValue" ng-style="maxStyle">' +                                                         
                         '<div class="currentValue" ng-style="currentStyle">' + 
                         '</div>' +                        
-                        '<span ng-transclude class="infoText" ng-style="infoStyle"></span>' +
+                        '<span ng-transclude class="infoText"></span>' +
                     '</div>' +
             '</div>',
 
@@ -78,7 +73,7 @@ angular.module( 'isteven-omni-bar', ['ng'] ).directive( 'istevenOmniBar' , [ '$t
             var maxValueBar     = element.children()[ 0 ];
             var containerBar    = element;
 
-            $scope.setWidth = function( currentVal, maxVal ) {            
+            $scope.drawBar = function( currentVal, maxVal ) {            
                 if ( typeof maxVal === 'undefined' || maxVal === null ) {
                     var calculatedWidth = currentVal; 
                 }
@@ -86,32 +81,41 @@ angular.module( 'isteven-omni-bar', ['ng'] ).directive( 'istevenOmniBar' , [ '$t
                     var calculatedWidth = ( currentVal / maxVal ) * 100;   
                 }
                 currentValueBar.setAttribute( 'style', 'width:' + calculatedWidth + '%' );
+
+                // Somehow ng-style is removed after we change the width, so to make it persistant:
+                if ( typeof $scope.currentStyle !== 'undefined' ) {
+                    angular.element( currentValueBar ).css( $scope.currentStyle );
+                }
+            
+                if ( typeof $scope.maxStyle !== 'undefined' ) {
+                    angular.element( maxValueBar ).css( $scope.maxStyle );
+                }
+                
+                if ( typeof $scope.containerStyle  !== 'undefined' ) {
+                    angular.element( containerBar ).css( $scope.containerStyle );
+                }
             }
 
-            $scope.setWidth( 0 , null );
+            $scope.drawBar( 0 , null );
 
             $timeout( function() {            
                 
                 $scope.$watch( 'currentValue' , function( newVal, oldVal ) {
                     if ( typeof newVal !== 'undefined' ) {
-                        console.log( 'triggered' );
-                        $scope.setWidth( newVal, $scope.maxValue );                    
+                        console.log( 'ng style ' );
+                        console.log( $scope.currentStyle );
+                        $scope.drawBar( newVal, $scope.maxValue );                    
                     }
                 });
 
                 $scope.$watch( 'maxValue', function( newVal, oldVal ) {
                     if ( typeof newVal !== 'undefined' ) {
-                        $scope.setWidth( $scope.currentValue , newVal );                    
+                        $scope.drawBar( $scope.currentValue , newVal );                    
                     }
-                });
-
-                $scope.$watch( 'infoFormat', function( newVal, oldVal ) {
-                    $scope.infoText = newVal;
                 });
 
                 $scope.$watch( 'currentStyle', function( newVal, oldVal ) {   
                     if ( typeof newVal !== 'undefined' ) {
-                        console.log( 'here' );
                         angular.element( currentValueBar ).css( newVal );
                     }
                 });

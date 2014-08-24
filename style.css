@@ -43,6 +43,11 @@ h3 {
     width: 100%;
     margin-top: 25px;
 }
+.subTitle {
+    margin: 0px;
+    padding: 0px;
+}
+
 .attrs  {
     margin-bottom:10px;
 }

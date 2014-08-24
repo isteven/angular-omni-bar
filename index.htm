@@ -21,19 +21,20 @@
 <body ng-controller="main">
     <div id="container">
         <h1>AngularJS Omni Bar</h1>
-        <h4>
-            Native AngularJS multi-purpose stacked bar you can use to display progress or completion. Supports simple animation using ngAnimate, and configurable through CSS.
+        <h4 class="subTitle">
+            Native AngularJS multi-purpose stacked bar you can use to display progress or completion.
             <br />
             Version: 1.0.0
         </h4>
+
+        <br />
+        <br />
 <div
     isteven-omni-bar
     current-value='value1'
-    max-value='value2'
     current-style='style1'
-    max-style='style2'
 >
-<span>${{value1}} of ${{value2}}</span>
+<span>{{value1}}%</span>
 </div>
 
 <input type='text' ng-model='value1' />
@@ -58,14 +59,106 @@
         <h2>Features</h2>
         <ul>
             <li>Pure AngularJS. Can be easily combined with other Javascript libraries such as jQuery, Twitter Bootstrap, etc.</li>            
+            <li>Using simple CSS3 animation.</li>
+            <li>Very easy to use & configurable.</li>
         </ul> 
+    
 
-        
         <h2>Usage</h2>
+        Include the required files
+<pre><code>&lt;link rel="stylesheet" href="isteven-omni-bar.css"&gt;
+...
+&lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"&gt;&lt;/script&gt;
+&lt;script src="isteven-omni-bar.js"&gt;&lt;/script&gt;      
+...
+</code></pre>
 
-        <h2>Demo</h2>
+        Load the omni-bar directive into your AngularJS app, such as:
+        <br />
+<pre><code>var myApp = angular.module( 'myApp', [ 'isteven-omni-bar' ]);</code></pre>
 
+        <div class="col">
+        In your view, set the directive as an attribute<br />
+<pre><code>&lt;div     
+    isteven-omni-bar
+    current-value="39"
+&gt;
+&lt;/div&gt;
+</code></pre>
+        </div>
+        <div class="col">
+        ... or as an element, but be careful with browser compatibility.<br />
+<pre><code>&lt;isteven-omni-bar 
+    current-value="39"
+&gt;
+&lt;/isteven-omni-bar&gt;
+</code></pre>
+        </div>
+        <div style="clear:both">   
+        And that's it! You should now have the omni bar directive like what you see above (but without the animation).
+        <br /><br />
+        </div>
+
+        <h2>Attributes / Options</h2>
         
+        <div class="col">
+            Full spec
+<pre><code>&lt;div 
+    isteven-omni-bar
+    current-value="number | $scope.var"
+    current-style="string | $scope.var"
+    max-value="number | $scope.var"    
+    max-style="string | $scope.var"
+    container-style="string | $scope.var"
+    info-style="string | $scope.var"
+    on-click="$scope.functionClick( data )"
+&gt;
+&lt;/div&gt;
+</code></pre>
+        </div>
+        <div class="col">
+            .. or ..
+<pre><code>&lt;isteven-omni-bar 
+    ...
+&gt;
+&lt;/isteven-omni-bar&gt;
+</code></pre>
+        </div>    
+
+        <div style="clear:both">&nbsp;</div>
+        Below are the available attributes to configure the multi-select directive:
+        
+        <ul>
+            <li class="attrs">
+                <strong>current-value (REQUIRED)</strong> and <strong>max-value</strong>
+                <br />Accept direct value or $scope variable.
+                <br />The current-value, combined with max-value (if specified), will decide the width percentage of the current-bar using this formula: (current-value / max-value) * 100                
+                <br />IMPORTANT: If max-value is not specified, the current-value will automatically be assumed as the percentage.
+            </li>
+
+            <li class="attrs">
+                <strong>current-style</strong>
+                <br />CSS for the current-value bar.
+                <br />Format: { style: value [, style: value .. ] }
+                <br />Very similar with jQuery's css() method. Read more at <a href="http://api.jquery.com/css" target="_blank">http://api.jquery.com/css</a>
+            </li>
+
+            <li class="attrs">
+                <strong>max-style</strong>
+                <br />CSS for the current-value bar.
+                <br />Format: { style: value [, style: value .. ] }
+                <br />Very similar with jQuery's css() method. Read more at <a href="http://api.jquery.com/css" target="_blank">http://api.jquery.com/css</a>
+            </li>
+            
+            <li class="attrs">
+                <strong>container-style</strong>
+                <br />CSS for the container (not visible in the sample).
+                <br />Format: { style: value [, style: value .. ] }
+                <br />Very similar with jQuery's css() method. Read more at <a href="http://api.jquery.com/css" target="_blank">http://api.jquery.com/css</a>
+            </li>
+            
+            
+        </ul>
 
         <h2>Dependency</h2>
         AngularJS v1.2.15. Other versions may or may not work. Please test first.
@@ -127,7 +220,7 @@ SOFTWARE</p>
 var myApp = angular.module('myApp', [ 'isteven-omni-bar' ]);
 
 // Controller
-myApp.controller( 'main' , [ '$scope' , function ($scope) {               
+myApp.controller( 'main' , [ '$scope' , '$interval' , function ( $scope, $interval ) {               
 
     $scope.barText = function ( value1, value2 ) {
         if ( typeof value1 !== 'undefined' && typeof value2 !== 'undefined' ) {
@@ -145,10 +238,12 @@ myApp.controller( 'main' , [ '$scope' , function ($scope) {
         
     }    
 
-    $scope.value1 = 4000;
-    $scope.value2 = 4500;
-
+    $scope.value1 = 39;
     $scope.style1 = $scope.setRandomColor();
+
+    $interval( function() {        
+        $scope.style1 = $scope.setRandomColor();        
+    },1500 );
 }]);    
 
 // hljs.initHighlightingOnLoad(); 
