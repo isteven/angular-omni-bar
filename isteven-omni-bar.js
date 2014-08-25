@@ -60,11 +60,11 @@ angular.module( 'isteven-omni-bar', ['ng'] ).directive( 'istevenOmniBar' , [ '$t
 
         template: 
             '<div class="containerBar">' +       
-                    '<div class="maxValue" ng-style="maxStyle">' +                                                         
-                        '<div class="currentValue" ng-style="currentStyle">' + 
-                        '</div>' +                        
-                        '<span ng-transclude class="infoText"></span>' +
-                    '</div>' +
+                '<div class="maxValue" ng-style="maxStyle">' +                                                         
+                    '<div class="currentValue" ng-style="currentStyle">' + 
+                    '</div>' +                        
+                    '<span ng-transclude class="infoText"></span>' +
+                '</div>' +
             '</div>',
 
         link: function ( $scope, element, attrs ) {               
@@ -73,13 +73,18 @@ angular.module( 'isteven-omni-bar', ['ng'] ).directive( 'istevenOmniBar' , [ '$t
             var maxValueBar     = element.children()[ 0 ];
             var containerBar    = element;
 
-            $scope.drawBar = function( currentVal, maxVal ) {            
+            $scope.drawBar = function( currentVal, maxVal ) {       
+                
+                // if max-value is not specified, we use the current value as the width %
+                // else we calculate using the formula
                 if ( typeof maxVal === 'undefined' || maxVal === null ) {
                     var calculatedWidth = currentVal; 
                 }
                 else {
                     var calculatedWidth = ( currentVal / maxVal ) * 100;   
                 }
+
+                // set the width here.. just plain ol' javascript 
                 currentValueBar.setAttribute( 'style', 'width:' + calculatedWidth + '%' );
 
                 // Somehow ng-style is removed after we change the width, so to make it persistant:
@@ -96,14 +101,15 @@ angular.module( 'isteven-omni-bar', ['ng'] ).directive( 'istevenOmniBar' , [ '$t
                 }
             }
 
+            // initial draw (0%) so we can see a nice animation when the current-value is actually loaded by $watch below
             $scope.drawBar( 0 , null );
 
+            // watches.. nothing unusual here.
+            // timeout is used for the loading animation
             $timeout( function() {            
                 
                 $scope.$watch( 'currentValue' , function( newVal, oldVal ) {
                     if ( typeof newVal !== 'undefined' ) {
-                        console.log( 'ng style ' );
-                        console.log( $scope.currentStyle );
                         $scope.drawBar( newVal, $scope.maxValue );                    
                     }
                 });

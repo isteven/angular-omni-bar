@@ -20,7 +20,7 @@
     z-index: 1;    
     height: 100%;
     border-radius: 5px;
-    /* background-color: #99cc00;  */
+    background-color: #99cc00;
 }
 
 /* Sub value bar animation on change. You need to include ngAnimate module for this */
