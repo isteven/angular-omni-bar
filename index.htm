@@ -2,20 +2,25 @@
 <html lang="en" ng-app="myApp" id="ng-app">
 <head>
 
-    <title></title>        
+    <title>AngularJS Omni Bar</title>        
     <!-- css -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">     
-    <link rel="stylesheet" href="style.css">                        
+    
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="highlight/styles/github.css">
     <link rel="stylesheet" href="isteven-omni-bar.css">                        
 
     <!-- JS -->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="highlight/highlight.pack.js"></script>
     <script src="angular.min.js"></script>    
     <script src="isteven-omni-bar.js"></script>      
     
 </head>
 <body ng-controller="main">
+
     <div id="container">
         <h1>AngularJS Omni Bar</h1>
         <h4 class="subTitle">
@@ -78,7 +83,7 @@
         In your view, set the directive as an attribute<br />
 <pre><code>&lt;div     
     isteven-omni-bar
-    current-value="39"
+    current-value="percentageValue"
 &gt;
 &lt;/div&gt;
 </code></pre>
@@ -86,14 +91,19 @@
         <div class="col">
         ... or as an element, but be careful with browser compatibility.<br />
 <pre><code>&lt;isteven-omni-bar 
-    current-value="39"
+    current-value="percentageValue"
 &gt;
+{{percentageValue}}
 &lt;/isteven-omni-bar&gt;
 </code></pre>
         </div>
         <div style="clear:both">   
+
+        In your controller, set the percentageValue variable:
+<pre><code>$scope.percentageValue = 39;
+</code></pre>
         And that's it! You should now have the omni bar directive like what you see above (but without the animation).
-        <br /><br />
+        <br />
         </div>
 
         <h2>Attributes / Options</h2>
@@ -102,13 +112,15 @@
             Full spec
 <pre><code>&lt;div 
     isteven-omni-bar
-    current-value="number | $scope.var"
-    current-style="string | $scope.var"
+    current-value="number | $scope.var"    
     max-value="number | $scope.var"    
-    max-style="string | $scope.var"
-    container-style="string | $scope.var"
-    info-style="string | $scope.var"
+
+    current-style="css object | $scope.var"
+    max-style="css object | $scope.var"
+    container-style="css object | $scope.var"
+    info-style="css object | $scope.var"
 &gt;
+    Any text you want to put in the middle of the bar
 &lt;/div&gt;
 </code></pre>
         </div>
@@ -117,6 +129,7 @@
 <pre><code>&lt;isteven-omni-bar 
     ...
 &gt;
+    Any text you want to put in the middle of the bar
 &lt;/isteven-omni-bar&gt;
 </code></pre>
         </div>    
@@ -130,47 +143,99 @@
                 <br />Accept direct value or $scope variable.
                 <br />The current-value, combined with max-value (if specified), will decide the width percentage of the current-bar using this formula: (current-value / max-value) * 100                
                 <br />IMPORTANT: If max-value is not specified, the current-value will automatically be assumed as the percentage.
-            </li>
+            </li>            
 
             <li class="attrs">
                 <strong>current-style</strong>
                 <br />CSS for the current-value bar.
                 <br />Format: { style: value [, style: value .. ] }
-                <br />Very similar with jQuery's css() method. Read more at <a href="http://api.jquery.com/css" target="_blank">http://api.jquery.com/css</a>
+                <br />
             </li>
 
             <li class="attrs">
                 <strong>max-style</strong>
                 <br />CSS for the current-value bar.
                 <br />Format: { style: value [, style: value .. ] }
-                <br />Very similar with jQuery's css() method. Read more at <a href="http://api.jquery.com/css" target="_blank">http://api.jquery.com/css</a>
             </li>
             
             <li class="attrs">
                 <strong>container-style</strong>
                 <br />CSS for the container (not visible in the sample).
                 <br />Format: { style: value [, style: value .. ] }
-                <br />Very similar with jQuery's css() method. Read more at <a href="http://api.jquery.com/css" target="_blank">http://api.jquery.com/css</a>
             </li>
-            
-            
+ 
+            <li class="attrs">
+                <strong>info-style</strong>
+                <br />CSS for the text within the bar.
+                <br />Format: { style: value [, style: value .. ] }
+            </li>            
         </ul>
 
+        * All CSS properties above are the same with jQuery's css() method format. Read more at <a href="http://api.jquery.com/css" target="_blank">http://api.jquery.com/css</a>
+
         <h2>Demo</h2>
-        <h4>1) Simple page loading bar</h4>
-        Look on top of the page :)
+        <h3>1) Simple page loading bar</h3>
+        Look on top of the page. Missed it? Refresh your page and look again. <br />
+        Note: This is just a simple, stupid page loading algorithm. Not really accurate. Use it at your own risk.
+        
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="active"><a href="#view1" role="tab" data-toggle="tab">View</a></li>
+          <li><a href="#controller1" role="tab" data-toggle="tab">Controller</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="view1">
+<pre><code>&lt;div 
+    isteven-omni-bar
+    current-value='pageSize'
+    current-style='loadingCurrent'
+    container-style='loadingBarStyle'
+&gt;
+&lt;/div&gt;  
+</code></pre>
+            </div>
+            <div class="tab-pane" id="controller1">
+<pre><code>
+    $scope.pageSize = 0;
+
+    var pulse = $interval( function( pulse ) {
+        $scope.pageSize = $scope.pageSize + 1;
+        if ( $scope.pageSize > 98 ) {
+            $scope.pageSize = 98;
+        }
+    }, 50 );
+
+    angular.element(document).ready(function () {
+        console.log( "done, page is loaded!" );
+        
+            $scope.pageSize = 100;
+            $interval.cancel(pulse);
+        
+    });
+
+    $scope.loadingBarStyle = {
+        position: "fixed",
+        top: "0px",
+        left: "0px",
+        height: "3px",
+        zIndex: "20"
+    }
+
+    $scope.loadingCurrent = {
+        backgroundColor: "orange"
+    }
+</pre></code>
+            </div>
+        </div>
+        
         <div
             isteven-omni-bar
             current-value='pageSize'
             current-style='loadingCurrent'
             container-style='loadingBarStyle'
         >
-        <span>{{pageSize}}%</span>
         </div>  
-        
-        
-        <img src="http://peach.blender.org/wp-content/uploads/big_big_buck_bunny.jpg"/>
-
+ 
         <h2>Dependency</h2>
         AngularJS v1.2.15. Other versions may or may not work. Please test first.
 

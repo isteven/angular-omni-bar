@@ -8,6 +8,7 @@ body {
     margin: 0px auto; 
     padding: 15px 50px;
 }
+/*
 pre {
     word-wrap: break-word;   
     margin: 0px;
@@ -74,7 +75,8 @@ div.fauxcode, .fauxcode td {
     padding-right:10px;
     vertical-align: top;
     white-space: nowrap;
-}
+}*/
+
 .download {
     border-radius:5px;
     border:1px solid #ccc;
