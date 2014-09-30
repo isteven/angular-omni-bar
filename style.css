@@ -8,74 +8,38 @@ body {
     margin: 0px auto; 
     padding: 15px 50px;
 }
-/*
-pre {
-    word-wrap: break-word;   
+
+.soloCode pre {
+    padding: 7px;
+    background-color: #f8f8f8;  
+}
+
+.tabCode pre {    
+    display: block;
+    padding: 5px !important;
     margin: 0px;
-    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #333;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #f8f8f8;    
+    border-top: none;
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-radius: 2px;
 }
 
-code {            
-    background-color: #f6f6f6;
-    display: inline-block;
-    border: 1px solid #ccc !important;
-    padding: 0 2px 0 2px !important; 
-}
-
-pre code {
-    padding: 10px !important; 
-}
-
-h1 {
-    font-size: 3em;
-    padding: 0;
-    margin: 0;
-}
-h2 {
-    display: inline-block;
-    margin-top:35px;
-    margin-bottom: 15px;
-    width:100%;
-    height:28px;
-    border-bottom:1px solid #ccc;
-}
-h3 {
-    display: inline-block;
-    width: 100%;
-    margin-top: 25px;
-}
-.subTitle {
-    margin: 0px;
-    padding: 0px;
-}
-
-.attrs  {
-    margin-bottom:10px;
-}
-.col {
-    display: inline-block;
-    float: left;
-    margin-right:15px;
-}
-.inlinefauxcode {           
-    font-family: monospace !important;
-    padding: 1px;
-    position:relative;
-    top:-2px;
+.darkTab.nav-tabs > li.active >a, 
+.darkTab.nav-tabs > li.active > a:hover, 
+.darkTab.nav-tabs > li.active > a:focus {
+    color: #555;
+    cursor: default;
+    background-color: #f8f8f8;
     border: 1px solid #ccc;
-    background-color: #F8F8F8;
+    border-bottom-color: transparent;
 }
-.fauxcode {
-    border: 1px solid #ccc;
-    background-color: #F8F8F8;
-    padding: 10px !important;
-}
-div.fauxcode, .fauxcode td {
-    font-family: monospace !important;
-    padding-right:10px;
-    vertical-align: top;
-    white-space: nowrap;
-}*/
 
 .download {
     border-radius:5px;
@@ -117,4 +81,12 @@ div.fauxcode, .fauxcode td {
 }       
 .grey {
     color: #999;
+}
+
+.marginTop {
+    margin-top: 45px;
+}
+
+.borderBottom {
+    border-bottom: 1px solid #999;
 }

@@ -15,21 +15,21 @@
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="highlight/highlight.pack.js"></script>
-    <script src="angular.min.js"></script>    
+    <script src="angular.min.js"></script>        
     <script src="isteven-omni-bar.js"></script>      
-    
+    <script src="angular-highlightjs.js"></script>        
+
 </head>
 <body ng-controller="main">
 
     <div id="container">
         <h1>AngularJS Omni Bar</h1>
         <h4 class="subTitle">
-            Native AngularJS multi-purpose stacked bar you can use to display progress or completion.
+            Native AngularJS multi-purpose bar you can use to display progress or completion.
             <br />
             Version: 1.0.0
         </h4>
 
-        <br />
         <br />
 <div
     isteven-omni-bar
@@ -39,14 +39,7 @@
 <span>{{value1}}%</span>
 </div>
 
-<input type='text' ng-model='value1' />
-<input type='text' ng-model='value2' />
-
-<button type='button' ng-click='style1 = setRandomColor()' >Change current bar color</button>
-<button type='button' ng-click='style2 = setRandomColor()' >Change max bar color</button>
-
-                
-        <br /><br />
+<br /><br />
 
         <a href="https://github.com/isteven/angular-multi-select" target="_blank" class="download" onclick="ga( 'send', 'event', 'button', 'click' );">
             <div class="fa fa-github fa-lg">
@@ -66,72 +59,74 @@
         </ul> 
     
 
-        <h2>Usage</h2>
+        <h2 class="marginTop">Usage</h2>
         Include the required files
-<pre><code>&lt;link rel="stylesheet" href="isteven-omni-bar.css"&gt;
+        <div hljs class="soloCode" source='"<link rel=\"stylesheet\" href=\"isteven-omni-bar.css\">
 ...
-&lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"&gt;&lt;/script&gt;
-&lt;script src="isteven-omni-bar.js"&gt;&lt;/script&gt;      
+<script src=\"https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js\"></script>
+<script src=\"isteven-omni-bar.js\"></script>
 ...
-</code></pre>
+</div>"'></div>
 
         Load the omni-bar directive into your AngularJS app, such as:
         <br />
-<pre><code>var myApp = angular.module( 'myApp', [ 'isteven-omni-bar' ]);</code></pre>
+<div hljs class="soloCode">
+var myApp = angular.module( 'myApp', [ 'isteven-omni-bar' ] );
+</div>
 
         <div class="col">
         In your view, set the directive as an attribute<br />
-<pre><code>&lt;div     
+<div hljs class="soloCode">
+<div     
     isteven-omni-bar
     current-value="percentageValue"
-&gt;
-&lt;/div&gt;
-</code></pre>
+    >
+</div>
+</div>
         </div>
         <div class="col">
         ... or as an element, but be careful with browser compatibility.<br />
-<pre><code>&lt;isteven-omni-bar 
+<div hljs class="soloCode"><isteven-omni-bar 
     current-value="percentageValue"
-&gt;
-{{percentageValue}}
-&lt;/isteven-omni-bar&gt;
-</code></pre>
+    >
+    {{percentageValue}}
+</isteven-omni-bar>
+</div>
         </div>
         <div style="clear:both">   
 
         In your controller, set the percentageValue variable:
-<pre><code>$scope.percentageValue = 39;
-</code></pre>
+<div hljs class="soloCode">$scope.percentageValue = 39;
+</div>
         And that's it! You should now have the omni bar directive like what you see above (but without the animation).
         <br />
         </div>
 
-        <h2>Attributes / Options</h2>
+        <h2 class="marginTop">Attributes / Options</h2>
         
         <div class="col">
             Full spec
-<pre><code>&lt;div 
+<div class="soloCode" hljs source='"<div
     isteven-omni-bar
-    current-value="number | $scope.var"    
-    max-value="number | $scope.var"    
-
-    current-style="css object | $scope.var"
-    max-style="css object | $scope.var"
-    container-style="css object | $scope.var"
-    info-style="css object | $scope.var"
-&gt;
+    current-value=\"number | $scope.var\"    
+    max-value=\"number | $scope.var\"    
+    current-style=\"css object | $scope.var\"
+    max-style=\"css object | $scope.var\"
+    container-style=\"css object | $scope.var\"
+    info-style=\"css object | $scope.var\"
+>
     Any text you want to put in the middle of the bar
-&lt;/div&gt;
-</code></pre>
+</div>"'>
+</div>
         </div>
         <div class="col">
             .. or ..
-<pre><code>&lt;isteven-omni-bar 
+<div hljs class="soloCode" source='"<isteven-omni-bar 
     ...
-&gt;
+>
     Any text you want to put in the middle of the bar
-&lt;/isteven-omni-bar&gt;
-</code></pre>
+</isteven-omni-bar>"'>
+</div>
         </div>    
 
         <div style="clear:both">&nbsp;</div>
@@ -173,73 +168,118 @@
 
         * All CSS properties above are the same with jQuery's css() method format. Read more at <a href="http://api.jquery.com/css" target="_blank">http://api.jquery.com/css</a>
 
-        <h2>Demo</h2>
-        <h3>1) Simple page loading bar</h3>
-        Look on top of the page. Missed it? Refresh your page and look again. <br />
-        Note: This is just a simple, stupid page loading algorithm. Not really accurate. Use it at your own risk.
-        
-        <ul class="nav nav-tabs" role="tablist">
-          <li class="active"><a href="#view1" role="tab" data-toggle="tab">View</a></li>
-          <li><a href="#controller1" role="tab" data-toggle="tab">Controller</a></li>
+        <h2 class="marginTop">Demo</h2>
+
+<h4>1) Simple bar</h4>
+        This is a loading / progress bar you can use for almost anything.
+        <div 
+    isteven-omni-bar
+    current-value='currentValue'    
+    current-style='loadingCurrent1'
+    container-style='loadingBarStyle1'
+    max-value='maxValue'
+>
+    Budget usage: ${{currentValue}} of ${{maxValue}}
+</div>
+        <br /><br />
+
+        <ul class="nav nav-tabs darkTab" role="tablist">
+            <li class="active"><a href="#view1" role="tab" data-toggle="tab">View</a></li>
+            <li><a href="#controller1" role="tab" data-toggle="tab">Controller</a></li>
         </ul>
 
         <div class="tab-content">
             <div class="tab-pane active" id="view1">
-<pre><code>&lt;div 
+                <div hljs class="tabCode" source='"<div 
     isteven-omni-bar
-    current-value='pageSize'
-    current-style='loadingCurrent'
-    container-style='loadingBarStyle'
-&gt;
-&lt;/div&gt;  
-</code></pre>
+    current-value=\"currentValue\"        
+    max-value=\"maxValue\"
+    current-style=\"loadingCurrent1\"
+    container-style=\"loadingBarStyle1\"
+>
+Budget usage: $\{\{currentValue\}\} of $\{\{maxValue\}\}
+</div>"'>
+                </div>
             </div>
+        
             <div class="tab-pane" id="controller1">
-<pre><code>
-    $scope.pageSize = 0;
+<div hljs class="tabCode">
+$scope.currentValue = 700;
+$scope.maxValue     = 1500;
 
-    var pulse = $interval( function( pulse ) {
-        $scope.pageSize = $scope.pageSize + 1;
-        if ( $scope.pageSize > 98 ) {
-            $scope.pageSize = 98;
-        }
-    }, 50 );
+$scope.loadingCurrent1 = {
+    backgroundColor: "#008080"
+}
+</div>
+            </div>
+        </div>
 
-    angular.element(document).ready(function () {
-        console.log( "done, page is loaded!" );
+        <h4>2) Page loading bar</h4>
+        Look on top of the page. Missed it? Refresh your page and look again. <br />
+        Note: This is just a simple, stupid page loading algorithm. Not really accurate. Use it at your own risk.
+        <br /><br />
+
+        <ul class="nav nav-tabs darkTab" role="tablist">
+          <li class="active"><a href="#view2" role="tab" data-toggle="tab">View</a></li>
+          <li><a href="#controller2" role="tab" data-toggle="tab">Controller</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="view2">
+                <div hljs class="tabCode" source='"<div 
+    isteven-omni-bar
+    current-value=\"pageSize\"
+    current-style=\"loadingCurrent\"
+    container-style=\"loadingBarStyle\"
+></div>"'>
+                </div>
+            </div>
         
-            $scope.pageSize = 100;
-            $interval.cancel(pulse);
-        
-    });
+            <div class="tab-pane" id="controller2">
+<div hljs class="tabCode">
+$scope.pageSize = 0;
 
-    $scope.loadingBarStyle = {
-        position: "fixed",
-        top: "0px",
-        left: "0px",
-        height: "3px",
-        zIndex: "20"
+var pulse = $interval( function( pulse ) {
+    $scope.pageSize = $scope.pageSize + 1;
+    if ( $scope.pageSize > 98 ) {
+        $scope.pageSize = 98;
     }
+}, 50 );
 
-    $scope.loadingCurrent = {
-        backgroundColor: "orange"
-    }
-</pre></code>
+angular.element(document).ready(function () {        
+    $scope.pageSize = 100;
+    $interval.cancel(pulse);    
+});
+
+$scope.loadingBarStyle2 = {
+    position: "fixed",
+    top: "0px",
+    left: "0px",
+    height: "3px",
+    zIndex: "20"
+}
+
+$scope.loadingCurrent2 = {
+    backgroundColor: "orange"
+}
+</div>
             </div>
         </div>
         
         <div
             isteven-omni-bar
             current-value='pageSize'
-            current-style='loadingCurrent'
-            container-style='loadingBarStyle'
+            current-style='loadingCurrent2'
+            container-style='loadingBarStyle2'
         >
         </div>  
+
+        
  
-        <h2>Dependency</h2>
+        <h2 class="marginTop">Dependency</h2>
         AngularJS v1.2.15. Other versions may or may not work. Please test first.
 
-        <h2>Browser Compatibility</h2>
+        <h2 class="marginTop">Browser Compatibility</h2>
         Tested on:
         <ul>
             <li>Opera >= 12.16 (Yes, I love Opera browser! Download yours here: <a href="http://www.opera.com/">http://www.opera.com/</a>)</li>
@@ -249,20 +289,20 @@
             <li>Might work on some mobile browsers. Please test first before you use this on production environment.</li>
         </ul>
 
-        <h2>Bug Reporting</h2>
+        <h2 class="marginTop">Bug Reporting</h2>
         <ul>            
             <li>Search in the issue section first. Somebody might have reported the same bug and/or asked similar question. If there's none, then please create a new issue in <a href="https://github.com/isteven/angular-multi-select/issues">https://github.com/isteven/angular-multi-select/issues</a>.</li>
             <li>Try to reproduce the problem in JSFiddle or Plunker (or any other online JS collaboration tool), and include the URL in the issue you are creating.</li>
         </ul>
 
-        <h2>Note</h2>
+        <h2 class="marginTop">Note</h2>
         <ul>            
             <li>This directive is a practical solution, not a performance champion. It will not win any code efficiency competition.</li>
             <li>As for the moment, developments are on going, so I am not accepting pull requests. I will choose &  add them manually instead.</li>
             <li>If you like / use this directive in your awesome projects, star this repo. It's a huge motivation for me. Would also love to hear from you if you use it in an open source project. Thanks!</li>                    
         </ul>        
         
-        <h2>Licence</h2>
+        <h2 class="marginTop">Licence</h2>
         Released under the MIT license:
         <div class="license">
         <p>The MIT License (MIT)</p>
@@ -293,11 +333,12 @@ SOFTWARE</p>
 <script>
 
 // Load the multi-select module
-var myApp = angular.module('myApp', [ 'isteven-omni-bar' ]);
+var myApp = angular.module('myApp', [ 'isteven-omni-bar', 'hljs' ]);
 
 // Controller
-myApp.controller( 'main' , [ '$scope' , '$interval' , function ( $scope, $interval ) {               
+myApp.controller( 'main' , [ '$scope' , '$interval' , function ( $scope, $interval ) {     
 
+    // Demo on top of the page
     $scope.barText = function ( value1, value2 ) {
         if ( typeof value1 !== 'undefined' && typeof value2 !== 'undefined' ) {
             return 'S$' + value1 + ' of S$' + value2;
@@ -321,8 +362,16 @@ myApp.controller( 'main' , [ '$scope' , '$interval' , function ( $scope, $interv
         $scope.style1 = $scope.setRandomColor();        
     },1500 );
 
-    // page loading logic.
-    
+    // Sample 1
+    $scope.currentValue = 700;
+    $scope.maxValue = 1500;
+    $scope.loadingCurrent1 = {
+        backgroundColor: "#008080"
+    }    
+        
+
+    // Sample 2
+    // page loading logic.    
     $scope.pageSize = 0;
 
     var pulse = $interval( function( pulse ) {
@@ -340,7 +389,7 @@ myApp.controller( 'main' , [ '$scope' , '$interval' , function ( $scope, $interv
         
     });
 
-    $scope.loadingBarStyle = {
+    $scope.loadingBarStyle2 = {
         position: "fixed",
         top: "0px",
         left: "0px",
@@ -348,21 +397,12 @@ myApp.controller( 'main' , [ '$scope' , '$interval' , function ( $scope, $interv
         zIndex: "20"
     }
 
-    $scope.loadingCurrent = {
+    $scope.loadingCurrent2 = {
         backgroundColor: "orange"
     }
 }]);    
-
-hljs.initHighlightingOnLoad(); 
-
 /*
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-50075821-1', 'isteven.github.io');
-ga('send', 'pageview');
+hljs.initHighlightingOnLoad(); 
 */
 </script>    
 </html>

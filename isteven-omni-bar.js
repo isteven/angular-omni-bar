@@ -77,8 +77,17 @@ angular.module( 'isteven-omni-bar', ['ng'] ).directive( 'istevenOmniBar' , [ '$t
                 
                 // if max-value is not specified, we use the current value as the width %
                 // else we calculate using the formula
-                if ( typeof maxVal === 'undefined' || maxVal === null ) {
+                if ( 
+                    typeof attrs.maxValue === 'undefined' || 
+                    attrs.maxValue === null || 
+                    typeof maxVal === 'undefined' || 
+                    maxVal === null 
+                ) {
                     var calculatedWidth = currentVal; 
+                }
+                // Just to make sure it's a number
+                else if ( maxVal * 1 === 0 ) {
+                    var calculatedWidth = 100;
                 }
                 else {
                     var calculatedWidth = ( currentVal / maxVal ) * 100;   
