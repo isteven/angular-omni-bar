@@ -4,7 +4,7 @@
  * Creates a simple bar to display a comparison of sub-value over the total-value.
  *
  * Project started on: Thu, 21 Aug 2014 - 15:30:31 
- * Current version: 0.1.0
+ * Current version: 1.0.1
  * 
  * Released under the MIT License
  * --------------------------------------------------------------------------------
