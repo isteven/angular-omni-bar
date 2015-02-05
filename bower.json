@@ -2,8 +2,8 @@
     "name"      : "isteven-angular-omni-bar",
     "version"   : "v1.0.1",
     "main"      : [
-        "angular-omni-bar.js",
-        "angular-omni-bar.css"
+        "isteven-omni-bar.js",
+        "isteven-omni-bar.css"
     ],
     "ignore"    : [
         ".git",
